@@ -3,18 +3,19 @@ A comprehensive platform to facilitate seamless online transactions for digital 
 
 Features
 User Management: Secure authentication
-Product Listings: Add, uand manage product inventories.
+Product Listings: Add and manage product inventories.
 Scalability: Built for growth with modular architecture.
 Technologies Used
 Backend: Spring Boot, Java 21
 Database: MySQL
-Others: Spring Security. JWT Authentication
+Others: Spring Security. JWT Authentication,Spring  Data Jdbc
 
 Getting Started
 Prerequisites
 Java 21
 Maven
 MySQL
+Spring Data Jdbc
 
 Installation
 Clone the repository:
