@@ -1,8 +1,6 @@
 package com.example.dmp.digital_course_marketplace.controller
 
-import com.example.dmp.digital_course_marketplace.entity.BoughtCoursesDTO
-import com.example.dmp.digital_course_marketplace.entity.CoursesDto
-import com.example.dmp.digital_course_marketplace.entity.CreateCoursesDTO
+import com.example.dmp.digital_course_marketplace.entity.*
 import com.example.dmp.digital_course_marketplace.service.CoursesService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -15,6 +13,11 @@ class CoursesController(private val service: CoursesService) {
     @PostMapping()
     fun saveCourse(@RequestBody dto: CreateCoursesDTO): ResponseEntity<CoursesDto> {
         return ResponseEntity.ok(service.save(dto))
+    }
+
+    @GetMapping("/buy-course/{id}")
+    fun buyCourse(@PathVariable id: Long): ResponseEntity<Transactions> {
+        return ResponseEntity.ok(service.buyCourse(id))
     }
 
     @GetMapping("/{loggedInUserId}")

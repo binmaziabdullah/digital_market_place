@@ -10,7 +10,6 @@ import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -18,24 +17,9 @@ import org.springframework.web.bind.annotation.*
 class UsersController(
     private val service: UserService,
     private val authenticationManager: AuthenticationManager,
-    private val passwordEncoder: PasswordEncoder,
     private val authenticationService: AuthenticationService,
     private val jwtUtil: JwtUtil
 ) {
-
-    @PostMapping("/authenticate")
-    fun authenticate(@RequestBody authenticationRequest: AuthenticationRequest): ResponseEntity<*> {
-        authenticationManager.authenticate(
-            UsernamePasswordAuthenticationToken(
-                authenticationRequest.username,
-                authenticationRequest.password
-            )
-        )
-        val userDetails: UserDetails =
-            authenticationRequest.username.let { authenticationService.loadUserByUsername(it) }!!
-        val jwt = jwtUtil.generateToken(userDetails)
-        return ResponseEntity.ok<Any>(AuthenticationResponse(userDetails.username, jwt))
-    }
 
     @PostMapping("/login")
     fun authenticateUser(@RequestBody loginRequest: LoginRequest): ResponseEntity<*> {

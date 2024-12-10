@@ -7,9 +7,9 @@ import java.time.LocalDate
 @Table("transactions")
 data class Transactions(
     @Id
-    val id: Long,
+    val id: Long? = null,
     val courseId: Long,
-    val userId: String,
+    val userId: Long,
     val purchaseDate: LocalDate = LocalDate.now()
 )
 

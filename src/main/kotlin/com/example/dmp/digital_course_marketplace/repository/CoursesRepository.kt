@@ -31,7 +31,7 @@ interface CoursesRepository : CrudRepository<Courses, Long> {
     @Query(
         """SELECT c.id   AS course_id,
            c.title       AS course_name,
-           SUM(t.amount) AS total_amount
+           SUM(c.price)  AS total_amount
     FROM transactions t
              JOIN courses c ON t.course_id = c.id
     WHERE t.purchase_date BETWEEN :startDate AND :endDate

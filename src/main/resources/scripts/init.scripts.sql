@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS users;
-CREATE TABLE users
+DROP TABLE IF EXISTS user;
+CREATE TABLE user
 (
     id         BIGINT AUTO_INCREMENT PRIMARY KEY,
     email      VARCHAR(255)                          NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE courses
     description    TEXT,
     price          double         NOT NULL,
     created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT courses_created_by_id_fk FOREIGN KEY (created_by_id) REFERENCES users (id)
+    CONSTRAINT courses_created_by_id_fk FOREIGN KEY (created_by_id) REFERENCES user (id)
 );
 
 DROP TABLE IF EXISTS transactions;
@@ -27,7 +27,6 @@ CREATE TABLE transactions
     course_id     BIGINT NOT NULL,
     user_id       BIGINT NOT NULL,
     purchase_date DATE   NOT NULL,
-    amount        double NOT NULL,
     CONSTRAINT courses_user_id_fk FOREIGN KEY (user_id) REFERENCES user (id),
     CONSTRAINT courses_course_id_fk FOREIGN KEY (course_id) REFERENCES courses (id)
 );

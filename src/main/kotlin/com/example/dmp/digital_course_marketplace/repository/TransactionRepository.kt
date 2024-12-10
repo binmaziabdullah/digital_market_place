@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface TransactionRepository : CrudRepository<Transactions, Long> {
+
+    fun existsByCourseIdAndUserId(courseId: Long, userId: Long): Boolean
 }
