@@ -15,7 +15,7 @@ class CoursesController(private val service: CoursesService) {
         return ResponseEntity.ok(service.save(dto))
     }
 
-    @GetMapping("/buy-course/{id}")
+    @GetMapping("/buy/course/{id}")
     fun buyCourse(@PathVariable id: Long): ResponseEntity<Transactions> {
         return ResponseEntity.ok(service.buyCourse(id))
     }
@@ -25,7 +25,7 @@ class CoursesController(private val service: CoursesService) {
         return ResponseEntity.ok(service.findAllByLoggedInUser(loggedInUserId))
     }
 
-    @GetMapping("/available-course")
+    @GetMapping
     fun findAllCourseByTileOrDescription(
         @RequestParam(required = false) title: String?,
         @RequestParam(required = false) description: String?
@@ -33,7 +33,7 @@ class CoursesController(private val service: CoursesService) {
         return ResponseEntity.ok(service.findAllCourseByTileOrDescription(title, description))
     }
 
-    @GetMapping("/all-bought-course")
+    @GetMapping("/stats")
     fun findAllBoughtCourses(
         @RequestParam(required = false) startDate: LocalDate,
         @RequestParam(required = false) endDate: LocalDate
